@@ -3,17 +3,17 @@ import { toast } from 'react-toastify';
 export const BookContext = createContext();
  const BookContexProvider = ({children}) => {
  
-     const [storedBook,setStoreBook] = useState([]);
+     const [readListBook,setReadListBook] = useState([]);
 
      const [wishListBook,setWishListBook] = useState([]);
 
     const handalMarksasBook = (currentBook)=>{
       // console.log(currentBook);
-      const isExistBook = storedBook.find(book => book.bookId === currentBook.bookId )
+      const isExistBook = readListBook.find(book => book.bookId === currentBook.bookId )
       if(isExistBook){
         toast.error(`${currentBook.bookName} is already existed`);
       }else{
-        setStoreBook([...storedBook , currentBook ])
+        setReadListBook([...readListBook , currentBook ])
      
         toast.success(`${currentBook.bookName} is add to read list`);
       }
@@ -22,7 +22,7 @@ export const BookContext = createContext();
 
      // wishListBook 
      const handalWishListBook =(currentBook)=>{
-            const isExistInReadList = storedBook.find(book => book.bookId === currentBook.bookId)
+            const isExistInReadList = readListBook.find(book => book.bookId === currentBook.bookId)
             if(isExistInReadList){
               toast.error(`${currentBook.bookName} is already in read list`)
               return;
@@ -43,8 +43,8 @@ export const BookContext = createContext();
 
     const data ={
       handalMarksasBook, 
-      storedBook,
-      setStoreBook,
+      readListBook,
+      setReadListBook,
       wishListBook,
       setWishListBook,
       handalWishListBook

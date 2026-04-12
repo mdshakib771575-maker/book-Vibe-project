@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import  { BookContext } from '../context/BookContexProvider';
 
 const BookDetails = () => {
     const {id} = useParams();
@@ -11,21 +12,13 @@ const BookDetails = () => {
 
     const {bookName,author,image,review,totalPages,rating,category,tags,publisher,yearOfPublishing} = expecteBook;
     // console.log(expecteBook)
+       const {handalMarksasBook,handalWishListBook} = useContext(BookContext)
+      //  console.log( storedBook , handalMarksasBook,"bookContext")
 
-    const [storedBook,setStoreBook] = useState([]);
-    const handalMarksasBook = (currentBook)=>{
-      console.log(currentBook);
-      const isExistBook = storedBook.find(book => book.bookId === currentBook.bookId )
-      if(isExistBook){
-        alert("This Book is already existed")
-      }else{
-        setStoreBook([...storedBook , currentBook ])
-      }
-
-    }
+   
     return (
         <div>
-           <div className="grid grid-cols-2 bg-base-100 shadow-sm w-11/12 mx-auto gap-4 ">
+           <div className="grid grid-cols-2 bg-base-100 shadow-sm w-6xl  mx-auto gap-4 ">
   <figure className='flex justify-center items-center bg-gray-100 rounded-xl'>
     <img src={image} alt={bookName} className='h-[300px] '/>
   </figure>
@@ -54,7 +47,7 @@ const BookDetails = () => {
       </div>
        <div className='flex gap-5'>
       <button onClick={()=>handalMarksasBook(expecteBook)} className="btn bg-white border border-sky-400">Mark as Read</button>
-      <button className="btn btn-info text-white">WishList</button>
+      <button className="btn btn-info text-white" onClick={()=>handalWishListBook(expecteBook)}>WishList</button>
       </div>
     </div>
   </div>

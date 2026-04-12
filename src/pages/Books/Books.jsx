@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { BookContext } from '../../context/BookContexProvider';
 
-const Books = () => {
+const Book = () => {
+    
+    
+    const { storedBook, wishListBook } =  useContext(BookContext)
+    console.log(storedBook)
     return (
         <div>
-            <h2>Books page</h2>
+           <h2>Books</h2>
+           <p>storedBook : {storedBook.length}</p>
+           <p>WishListBook : {wishListBook.length}</p>
         </div>
     );
 };
 
-export default Books;
+export default Book;

@@ -4,12 +4,14 @@ import { Link } from 'react-router';
 const BookCard = ({ book }) => {
     // console.log(book)
     return (
-        <div>
-            <Link to={`/bookDetails/${book.bookId}`} className="card bg-base-100 shadow-sm mt-10">
-                <figure className='p-6'>
-                    <img src={book.image} alt={book.bookName} className='rounded-2xl h-[260px]'/>
+        <div className=''>
+            <Link to={`/bookDetails/${book.bookId}`} className="card bg-base-100 shadow-xl mt-2 border border-gray-300">
+            <div className='bg-gray-300 rounded-md'>
+                <figure className=' p-6'>
+                    <img src={book.image} alt={book.bookName} className='rounded-2xl h-60'/>
                 </figure>
-                <div className="card-body">
+                </div>
+                <div className="card-body ">
                        <div className='flex gap-2'>
                         {
                             book.tags.map((tag,index)=> <div key={index} className="badge bg-green-200 text-green-600 font-bold rounded-2xl">{tag}</div>)
